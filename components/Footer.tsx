@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center gap-8 text-[10px] text-gray-400 dark:text-gray-500 font-black uppercase tracking-[0.5em]">
             <span className="hover:text-brand-blue transition-colors cursor-pointer">status</span>
             <span className="hover:text-brand-blue transition-colors cursor-pointer">api logs</span>
-            <span className="cursor-default">© 2024 waletz inc.</span>
+            <span className="cursor-default">© 2026 waletz inc.</span>
           </div>
         </div>
       </div>
