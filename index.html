@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waletz | Money without borders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                blue: '#0d59f2',
+                cyan: '#00D4FF',
+                dark: '#08090C',
+                surface: '#0B0D11',
+                border: 'rgba(255, 255, 255, 0.08)'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              gotham: ['Montserrat', 'sans-serif'],
+            },
+            animation: {
+              'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'shimmer': 'shimmer 2s linear infinite',
+              'float': 'float 8s ease-in-out infinite',
+              'scan': 'scan 10s linear infinite',
+              'marquee': 'marquee 60s linear infinite',
+              'orbit': 'orbit 25s linear infinite',
+              'reveal': 'reveal 1.4s cubic-bezier(0.19, 1, 0.22, 1) forwards',
+              'glitch': 'glitch 1s linear infinite',
+              'rotate-slow': 'rotate 60s linear infinite',
+              'page-fade': 'pageFade 0.6s ease-out forwards',
+            },
+            keyframes: {
+              shimmer: {
+                '0%': { backgroundPosition: '-200% 0' },
+                '100%': { backgroundPosition: '200% 0' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                '50%': { transform: 'translateY(-30px) rotate(1deg)' },
+              },
+              scan: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100vh)' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-50%)' },
+              },
+              rotate: {
+                'from': { transform: 'rotate(0deg)' },
+                'to': { transform: 'rotate(360deg)' }
+              },
+              reveal: {
+                '0%': { opacity: '0', transform: 'translateY(60px) scale(0.95)', filter: 'blur(15px)' },
+                '100%': { opacity: '1', transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
+              },
+              pageFade: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        :root {
+            --bg: #FAFAFB;
+            --text-primary: #0A0B0E;
+            --text-secondary: #475569;
+            --accent: #0d59f2;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+        
+        html.dark {
+            --bg: #08090C;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --accent: #00D4FF;
+            --glass-bg: rgba(11, 13, 17, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Dynamic Cosmic Background with Interaction */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(13, 89, 242, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 15% 15%, rgba(13, 89, 242, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 212, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(13, 89, 242, 0.05) 0%, transparent 60%);
+            z-index: -10;
+            pointer-events: none;
+            transition: background 0.1s ease-out;
+        }
+
+        .data-stream {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(13, 89, 242, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 89, 242, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            transform: perspective(1200px) rotateX(45deg) translateY(-20%) translateZ(0);
+            mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 90%);
+            z-index: -9;
+            pointer-events: none;
+            animation: drift 60s linear infinite;
+        }
+
+        @keyframes drift {
+            from { background-position: 0 0; }
+            to { background-position: 0 800px; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 30% 50%, rgba(13, 89, 242, 0.5), transparent),
+                radial-gradient(2px 2px at 70% 30%, rgba(0, 212, 255, 0.5), transparent),
+                radial-gradient(1.5px 1.5px at 90% 80%, rgba(255,255,255,0.4), transparent);
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            z-index: -8;
+            opacity: 0.25;
+            animation: pulseParticles 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulseParticles {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.05); }
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+            transition: background 0.5s ease, border 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
+        }
+
+        .dark .glass-panel {
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+        }
+
+        .animate-reveal {
+            animation: reveal 1.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            opacity: 0;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(13, 89, 242, 0.2);
+        }
+        
+        .dark .text-glow {
+            text-shadow: 0 0 40px rgba(13, 89, 242, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, rgba(13, 89, 242, 0.6), rgba(0, 212, 255, 0.6)); 
+            border-radius: 20px; 
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* Page Transition Utility */
+        .page-transition-enter {
+            animation: pageFade 0.6s ease-out forwards;
+        }
+    </style>
+    <script>
+        // Interactive mouse tracking script
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            document.documentElement.style.setProperty('--mouse-x', `${x}%`);
+            document.documentElement.style.setProperty('--mouse-y', `${y}%`);
+        });
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="antialiased font-sans">
+    <div class="cosmic-bg"></div>
+    <div class="data-stream"></div>
+    <div class="particles"></div>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
