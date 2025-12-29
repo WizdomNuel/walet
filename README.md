@@ -30,4 +30,4 @@
 
 ## License
 
-© 2024 waletz inc. All rights reserved.
+© 2026 waletz inc. All rights reserved.
